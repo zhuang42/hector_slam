@@ -176,6 +176,7 @@ protected:
   int p_map_multi_res_levels_;
 
   double p_map_pub_period_;
+  double p_transform_tolerance_;
 
   bool p_use_tf_scan_transformation_;
   bool p_use_tf_pose_start_estimate_;

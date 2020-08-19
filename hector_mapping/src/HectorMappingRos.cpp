@@ -141,8 +141,17 @@ HectorMappingRos::HectorMappingRos()
 
   slamProcessor->setUpdateFactorFree(p_update_factor_free_);
   slamProcessor->setUpdateFactorOccupied(p_update_factor_occupied_);
-  slamProcessor->setMapUpdateMinDistDiff(p_map_update_distance_threshold_);
-  slamProcessor->setMapUpdateMinAngleDiff(p_map_update_angle_threshold_);
+
+
+  // we don't want to update the map if passing in parameters is negative
+  if (p_map_update_distance_threshold_ < 0) {
+    slamProcessor->setMapUpdateMinDistDiff(INFINITY);
+  }
+
+  if (p_map_update_angle_threshold_ < 0) {
+    slamProcessor->setMapUpdateMinAngleDiff(INFINITY);
+  }
+
 
   int mapLevels = slamProcessor->getMapLevels();
   //mapLevels = 1;

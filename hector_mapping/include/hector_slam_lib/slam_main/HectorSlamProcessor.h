@@ -43,7 +43,8 @@
 #include "MapRepMultiMap.h"
 
 
-#include <float.h>
+#include <iostream>
+
 
 namespace hectorslam{
 
@@ -59,8 +60,8 @@ public:
 
     this->reset();
 
-    this->setMapUpdateMinDistDiff(0.4f *1.0f);
-    this->setMapUpdateMinAngleDiff(0.13f * 1.0f);
+    this->setMapUpdateMinDistDiff(INFINITY);
+    this->setMapUpdateMinAngleDiff(INFINITY);
   }
 
   ~HectorSlamProcessor()
@@ -82,12 +83,11 @@ public:
 
     lastScanMatchPose = newPoseEstimateWorld;
 
-    //std::cout << "\nt1:\n" << newPoseEstimateWorld << "\n";
 
-    //std::cout << "\n1";
-    //std::cout << "\n" << lastScanMatchPose << "\n";
     if(util::poseDifferenceLargerThan(newPoseEstimateWorld, lastMapUpdatePose, paramMinDistanceDiffForMapUpdate, paramMinAngleDiffForMapUpdate) || map_without_matching){
+      std::cout << "a1: " << util::poseDifferenceLargerThan(newPoseEstimateWorld, lastMapUpdatePose, paramMinDistanceDiffForMapUpdate, paramMinAngleDiffForMapUpdate) << " a2: " << map_without_matching <<"\n";
 
+      
       mapRep->updateByScan(dataContainer, newPoseEstimateWorld);
 
       mapRep->onMapUpdated();

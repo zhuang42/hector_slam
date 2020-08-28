@@ -142,6 +142,8 @@ HectorMappingRos::HectorMappingRos()
   slamProcessor->setUpdateFactorFree(p_update_factor_free_);
   slamProcessor->setUpdateFactorOccupied(p_update_factor_occupied_);
 
+
+
   slamProcessor->setMapUpdateMinDistDiff(p_map_update_distance_threshold_);
   slamProcessor->setMapUpdateMinAngleDiff(p_map_update_angle_threshold_);
 
@@ -587,6 +589,11 @@ void HectorMappingRos::setStaticMapData(const nav_msgs::OccupancyGrid& map)
     }
     gridMap.stablize();
     r /= 2.0f;
+  }
+
+  if (slamProcessor){
+    ptr->setMapUpdateMinDistDiff(slamProcessor->getMapUpdateMinDistDiff());
+    ptr->setMapUpdateMinAngleDiff(slamProcessor->getMapUpdateMinAngleDiff());
   }
 
   delete slamProcessor;

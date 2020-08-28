@@ -137,6 +137,8 @@ public:
   void setUpdateFactorOccupied(float occupied_factor) { mapRep->setUpdateFactorOccupied(occupied_factor); };
   void setMapUpdateMinDistDiff(float minDist) { paramMinDistanceDiffForMapUpdate = minDist; };
   void setMapUpdateMinAngleDiff(float angleChange) { paramMinAngleDiffForMapUpdate = angleChange; };
+  float getMapUpdateMinDistDiff() {return paramMinDistanceDiffForMapUpdate; };
+  float getMapUpdateMinAngleDiff() {return paramMinAngleDiffForMapUpdate; };
 
 protected:
 

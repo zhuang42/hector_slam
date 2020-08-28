@@ -85,9 +85,7 @@ public:
 
 
     if(util::poseDifferenceLargerThan(newPoseEstimateWorld, lastMapUpdatePose, paramMinDistanceDiffForMapUpdate, paramMinAngleDiffForMapUpdate) || map_without_matching){
-      std::cout << "a1: " << util::poseDifferenceLargerThan(newPoseEstimateWorld, lastMapUpdatePose, paramMinDistanceDiffForMapUpdate, paramMinAngleDiffForMapUpdate) << " a2: " << map_without_matching <<"\n";
-
-      
+     
       mapRep->updateByScan(dataContainer, newPoseEstimateWorld);
 
       mapRep->onMapUpdated();
